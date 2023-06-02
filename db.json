@@ -1,0 +1,52 @@
+{
+  "products": [
+    {
+      "name": "Светодиодный налобный фонарь",
+      "image": "1.png",
+      "priceOld": "80",
+      "priceNew": "40",
+      "available": true,
+      "article": "T1"
+    },
+    {
+      "name": "Уличный фонарь-прожектор",
+      "image": "2.png",
+      "priceOld": "50",
+      "priceNew": "25",
+      "available": true,
+      "article": "T2"
+    },
+    {
+      "name": "Прожектор Solar Lamp",
+      "image": "3.png",
+      "priceOld": "60",
+      "priceNew": "30",
+      "available": true,
+      "article": "T3"
+    },
+    {
+      "name": "Фонарик с электрошокером",
+      "image": "4.png",
+      "priceOld": "80",
+      "priceNew": "40",
+      "available": true,
+      "article": "T4"
+    },
+    {
+      "name": "Кемпинговый светильник-фонарь",
+      "image": "5.png",
+      "priceOld": "70",
+      "priceNew": "35",
+      "available": true,
+      "article": "T5"
+    },
+    {
+      "name": "Фонарь с датчиком движения",
+      "image": "6.png",
+      "priceOld": "90",
+      "priceNew": "50",
+      "available": true,
+      "article": "T6"
+    }
+  ]
+}
