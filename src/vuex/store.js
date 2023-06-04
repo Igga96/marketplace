@@ -30,7 +30,17 @@ let store = createStore({
         },
         REMOVE_ITEM_FROM_BASKET: (state, idx) => {
             state.basket.splice(idx, 1)
-        }
+        },
+        SET_ADD_COUNT:(state, idx)=>{
+            state.basket[idx].count++
+        },
+        SET_DECREASE_COUNT:(state, idx)=>{
+            if(state.basket[idx].count>1){
+                state.basket[idx].count--
+            }
+        },
+
+
     },
     actions: {
         GET_PRODUCTS_FROM_API({ commit }) {
@@ -50,9 +60,16 @@ let store = createStore({
         ADD_TO_BASKET({ commit }, product) {
             commit('SET_BASKET', product)
         },
+        ADD_COUNT({commit}, idx){
+            commit('SET_ADD_COUNT', idx)
+        },
+        DECREASE_COUNT({commit}, idx){
+            commit('SET_DECREASE_COUNT', idx)
+        },
         DELETE_FROM_BASKET({ commit }, idx) {
             commit('REMOVE_ITEM_FROM_BASKET', idx)
-        }
+        },
+        
     },
     getters: {
         PRODUCTS(state) {
