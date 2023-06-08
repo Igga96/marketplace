@@ -1,24 +1,21 @@
-# marketplace
+# Igor Mozgo
+## Тестовое задание на Vue.js (с использованием: Vue3, Vuex, Vue Router, json-server)
+## SPA приложение (интернет-магазин) с функциями:
+- вывод товаров(импорт из json объекта)
+- добавление товара в корзину
+- управление количеством и удаление из корзины
+- оформление заказа
+## За основу были взяты карточки товаров из проекта - [fonar.shop](https://igga96.github.io/Landings/pages/led-lamp1.html)
 
-## Project setup
-```
-npm install
-```
+## Для запуска проекта на Вашем компьютере необходимо установить node.js, vue.cli и json-server
 
-### Compiles and hot-reloads for development
+## После установки необходимо в командной строке или IDE перейти в папку с проектом 
 ```
-npm run serve
+cd 'C:\Users\User\...\marketplace'
 ```
-
-### Compiles and minifies for production
+## И запустить команды:
 ```
-npm run build
+npm run serve, json-server --watch db.json
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
