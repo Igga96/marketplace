@@ -19,7 +19,6 @@
     </div>
     <button class="v-catalog-item__btn waves-effect waves-light btn"
     @click="addToBasket">
-    
       <span>В корзину</span>
     </button>
   </div>
@@ -27,7 +26,6 @@
   <script>
 export default {
   name: "vCatalogItem",
-  components: {},
   props: {
     product_data: {
       type: Object,
@@ -36,13 +34,13 @@ export default {
       },
     },
   },
-  computed: {},
   methods: {
     addToBasket() {
       this.$emit('addToBasket', this.product_data)
     }
   },
-  watch: {},
+  mounted(){  let BasketItemData = this.product_data;
+    BasketItemData.qantity = 1;}
 };
 </script>    
   <style lang="scss">

@@ -22,6 +22,7 @@ const routes = [
         path: '/order',
         name: 'order',
         component: vOrder,
+        props: true
 
     }
 ]

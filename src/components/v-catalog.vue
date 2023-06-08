@@ -2,37 +2,65 @@
   <div class="v-catalog">
     <h2 class="v-catalog__title">Каталог товаров:</h2>
     <div class="v-catalog__container">
-      <vCatalogItem
-        v-for="product in PRODUCTS"
-        :key="product.article"
-        :product_data="product"
-        @addToBasket="addToBasket"
-      />
+      <vSelect 
+      :selected="selected" 
+      :options="options"
+      @select="sortByParams"/>
+      <div class="v-catalog__container_items">
+        <vCatalogItem
+          v-for="product in filterProducts"
+          :key="product.article"
+          :product_data="product"
+          @addToBasket="addToBasket"
+        />
+      </div>
     </div>
   </div>
 </template>
   <script>
-
 import vCatalogItem from "../components/v-catalog-item.vue";
+import vSelect from "../components/v-select.vue";
 import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "vCatalog",
   components: {
-    vCatalogItem
+    vCatalogItem,
+    vSelect,
   },
   data() {
-    return {};
+    return {
+      options: [
+        { name: "Цене", filterType: "coast" },
+        { name: "Наименованию", filterType: "name" },
+      ],
+      selected: 'выбрать',
+      sortedProducts: [],
+    };
   },
   props: {},
   computed: {
     ...mapGetters(["PRODUCTS"]),
+
+    filterProducts() {
+      if (this.sortedProducts.length) {
+        return this.sortedProducts;
+      } else {
+        return this.PRODUCTS;
+      }
+    },
   },
   methods: {
     ...mapActions(["GET_PRODUCTS_FROM_API", "ADD_TO_BASKET"]),
 
     addToBasket(data) {
       this.ADD_TO_BASKET(data);
+    },
+
+    sortByParams() {
+      const sortByPrice = (d1, d2) => (d1.priceNew > d2.priceNew ? 1 : -1);
+      this.PRODUCTS.map(this.sortedProducts.push(this.PRODUCTS.sort(sortByPrice))
+      );
     },
   },
 
@@ -50,8 +78,13 @@ export default {
   margin-top: 32px;
   &__container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 50px;
+    &_items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 50px;
+      padding: 0 20px;
+    }
   }
 }
 </style>

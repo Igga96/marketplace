@@ -4,7 +4,7 @@ import axios from 'axios'
 let store = createStore({
     state: {
         products: [],
-        basket: []
+        basket: [],
     },
     mutations: {
         SET_PRODUCTS_TO_STATE: (state, products) => {
@@ -16,7 +16,7 @@ let store = createStore({
                 state.basket.map(function (item) {
                     if (item.article == product.article) {
                         isProductExists = true
-                        item.count++
+                        item.qantity++
                     }
                 })
 
@@ -31,17 +31,16 @@ let store = createStore({
         REMOVE_ITEM_FROM_BASKET: (state, idx) => {
             state.basket.splice(idx, 1)
         },
-        SET_ADD_COUNT:(state, idx)=>{
-            state.basket[idx].count++
+        INCREASE_QANTITY: (state, idx) => {
+            state.basket[idx].qantity++
         },
-        SET_DECREASE_COUNT:(state, idx)=>{
-            if(state.basket[idx].count>1){
-                state.basket[idx].count--
+        DECREASE_QANTITY: (state, idx) => {
+            if (state.basket[idx].qantity > 1) {
+                state.basket[idx].qantity--
             }
         },
-
-
     },
+
     actions: {
         GET_PRODUCTS_FROM_API({ commit }) {
             return axios('http://localhost:3000/products', {
@@ -60,16 +59,15 @@ let store = createStore({
         ADD_TO_BASKET({ commit }, product) {
             commit('SET_BASKET', product)
         },
-        ADD_COUNT({commit}, idx){
-            commit('SET_ADD_COUNT', idx)
+        INCREASE_QANTITY({ commit }, idx) {
+            commit('INCREASE_QANTITY', idx)
         },
-        DECREASE_COUNT({commit}, idx){
-            commit('SET_DECREASE_COUNT', idx)
+        DECREASE_QANTITY({ commit }, idx) {
+            commit('DECREASE_QANTITY', idx)
         },
         DELETE_FROM_BASKET({ commit }, idx) {
             commit('REMOVE_ITEM_FROM_BASKET', idx)
         },
-        
     },
     getters: {
         PRODUCTS(state) {
@@ -77,7 +75,7 @@ let store = createStore({
         },
         BASKET(state) {
             return state.basket;
-        }
-    },
+        },
+    }
 })
 export default store;

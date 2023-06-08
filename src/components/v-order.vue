@@ -7,7 +7,7 @@
   import { mapGetters } from "vuex";
   
   export default {
-    name: "vHeader",
+    name: "vOrder",
     components: {},
     props: {},
     computed: {

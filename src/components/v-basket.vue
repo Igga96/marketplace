@@ -7,11 +7,11 @@
       :key="item.article"
       :basket_item_data="item"
       @deleteFromBasket="deleteFromBasket(idx)"
-      @addCount="addCount(idx)"
-      @decreaseCount="decreaseCount(idx)"
+      @increaseQantity="increaseQantity(idx)"
+      @decreaseQantity="decreaseQantity(idx)"
     />
     <div class="v-basket__order" v-if="BASKET.length">
-      <p>Общая стоимость: Р</p>
+      <p>Общая стоимость: {{basketTotalCoast}} Р</p>
       <router-link :to="{ name: 'order' }">
         <a class="waves-effect waves-light btn"> оформить заказ</a>
       </router-link>
@@ -40,23 +40,38 @@ export default {
   },
   methods: {
     ...mapActions([
-     "DELETE_FROM_BASKET",
-     "ADD_COUNT",
-     "DECREASE_COUNT"
+      "DELETE_FROM_BASKET",
+      "INCREASE_QANTITY",
+      "DECREASE_QANTITY",
     ]),
     deleteFromBasket(idx) {
       this.DELETE_FROM_BASKET(idx);
     },
-    addCount(idx){
-      this.ADD_COUNT(idx)
+    increaseQantity(idx) {
+      this.INCREASE_QANTITY(idx);
     },
-    decreaseCount(idx) {
-      this.DECREASE_COUNT(idx)
+    decreaseQantity(idx) {
+      this.DECREASE_QANTITY(idx);
     },
+   
+    
   },
   computed: {
     ...mapGetters(["BASKET"]),
+basketTotalCoast(){
+  let result = [];
+  if(this.BASKET.length){
+    for(let item of this.BASKET){
+      result.push(item.priceNew * item.qantity);
+    }
+    result = result.reduce(function(sum, el){
+      return sum+el
+    })
+  }
+  return result
+}
   },
+
 };
 </script>    
     <style lang="scss">

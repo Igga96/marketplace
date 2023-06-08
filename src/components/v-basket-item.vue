@@ -15,10 +15,10 @@
       <p>Количество:</p>
       <div class="v-basket-item__count_counter">
         <button class=" waves-effect waves-light btn"
-        @click="decreaseCount">-</button>
-        <p>{{ basket_item_data.count }}шт</p>
+        @click="decreaseQantity">-</button>
+        <p>{{ basket_item_data.qantity }}шт</p>
         <button class=" waves-effect waves-light btn"
-        @click="addCount">+</button>
+        @click="increaseQantity">+</button>
       </div>
       
     </div>
@@ -46,19 +46,16 @@ export default {
   data() {
     return {};
   },
-  mounted() {
-    let BasketItemData = this.basket_item_data;
-    BasketItemData.count = 1;
-  },
+  mounted() {},
   methods: {
     deleteFromBasket() {
       this.$emit("deleteFromBasket");
     },
-    addCount(){
-this.$emit("addCount")
+    increaseQantity(){
+this.$emit("increaseQantity")
     },
-    decreaseCount(){
-      this.$emit("decreaseCount")
+    decreaseQantity(){
+      this.$emit("decreaseQantity")
     }
   },
 };
