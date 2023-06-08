@@ -4,8 +4,8 @@
     <div class="v-catalog__container">
       <vSelect 
       :selected="selected" 
-      :options="options"
-      @select="sortByParams"/>
+      :options="options" 
+      @select="sortByParams" />
       <div class="v-catalog__container_items">
         <vCatalogItem
           v-for="product in filterProducts"
@@ -34,7 +34,7 @@ export default {
         { name: "Цене", filterType: "coast" },
         { name: "Наименованию", filterType: "name" },
       ],
-      selected: 'выбрать',
+      selected: "выбрать",
       sortedProducts: [],
     };
   },
@@ -57,10 +57,16 @@ export default {
       this.ADD_TO_BASKET(data);
     },
 
-    sortByParams() {
+    sortByParams(options) {
+      this.sortedProducts = [...this.PRODUCTS]
       const sortByPrice = (d1, d2) => (d1.priceNew > d2.priceNew ? 1 : -1);
-      this.PRODUCTS.map(this.sortedProducts.push(this.PRODUCTS.sort(sortByPrice))
-      );
+      const sortByName = (d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1;
+      switch (options.filterType) {
+        case "coast": return this.sortedProducts.sort(sortByPrice)
+        case "name": return this.sortedProducts.sort(sortByName)
+        default:
+          return this.PRODUCTS;
+      }
     },
   },
 
