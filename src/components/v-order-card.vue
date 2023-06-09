@@ -149,11 +149,6 @@
             </div>
           </div>
         </div>
-        <input
-        type="button"
-        value="Продолжить"
-        class="waves-effect waves-light btn"
-      />
       </div>
     </div>
   </template>
@@ -161,6 +156,9 @@
   
   export default {
     name: "vOrderCard",
+    props:{
+      },
+    
     data() {
     return {
       currentCardBackground: Math.floor(Math.random()* 25 + 1), // just for fun :D
@@ -239,7 +237,7 @@
         }
       }, 300);
       vm.isInputFocused = false;
-    }
+    },
   }
   };
   </script>    
@@ -254,10 +252,7 @@
   }
 
   &__inner {
-    background: #fff;
-    // box-shadow: 3px 13px 30px 0px rgba(21, 34, 67, 0.2);
-    box-shadow: 0 30px 60px 0 rgba(90, 116, 148, 0.4);
-    border-radius: 10px;
+  
     padding: 35px;
     padding-top: 180px;
 
@@ -344,11 +339,10 @@
 .card-item {
   max-width: 430px;
   height: 270px;
-  margin-left: auto;
-  margin-right: auto;
   position: relative;
   z-index: 2;
   width: 100%;
+  margin: 20px auto;
 
   @media screen and (max-width: 480px) {
     max-width: 310px;
@@ -813,41 +807,4 @@
   pointer-events: none;
 }
 
-
-
-.github-btn {
-  position: absolute;
-  right: 40px;
-  bottom: 50px;
-  text-decoration: none;
-  padding: 15px 25px;
-  border-radius: 4px;
-  box-shadow: 0px 4px 30px -6px rgba(36, 52, 70, 0.65);
-  background: #24292e;
-  color: #fff;
-  font-weight: bold;
-  letter-spacing: 1px;
-  font-size: 16px;
-  text-align: center;
-  transition: all .3s ease-in-out;
-
-  @media screen and (min-width: 500px) {
-    &:hover {
-      transform: scale(1.1);
-      box-shadow: 0px 17px 20px -6px rgba(36, 52, 70, 0.36);
-    }
-  }
-
-  @media screen and (max-width: 700px) {
-    position: relative;
-    bottom: auto;
-    right: auto;
-    margin-top: 20px;
-
-    &:active {
-      transform: scale(1.1);
-      box-shadow: 0px 17px 20px -6px rgba(36, 52, 70, 0.36);
-    }
-  }
-}
   </style>
